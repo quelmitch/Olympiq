@@ -1,7 +1,6 @@
 import { QueryResponse } from '../types/sports';
 
-// 1. Update the model endpoint to gemini-2.5-flash
-const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
+const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent';
 
 const SYSTEM_INSTRUCTION = `You are Olympiq, a universal sports data expert. You extract information about sports matches, schedules, athlete stats, or multi-sport championships/medal tables.
 You MUST ALWAYS return your response as a valid JSON object matching this schema contract:
@@ -35,7 +34,6 @@ export async function fetchSportsData(query: string, apiKey: string): Promise<Qu
           parts: [{ text: query }],
         },
       ],
-      // 2. REST API expects systemInstruction without a nested role: "system"
       systemInstruction: {
         parts: [{ text: SYSTEM_INSTRUCTION }],
       },
